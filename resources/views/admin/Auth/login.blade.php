@@ -58,12 +58,13 @@
             <!-- Professional Accent Bar -->
             <div class="h-1.5 w-full bg-primary"></div>
             <div class="p-8 lg:p-10">
-                <form action="#" class="space-y-6" method="POST">
+                <form action="{{ route('login') }}" class="space-y-6" method="POST">
+                    @csrf
                     <!-- Username/Email Field -->
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-2"
-                            for="username">
-                            Username
+                            for="email">
+                            Email Address
                         </label>
                         <div class="relative group">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -71,10 +72,13 @@
                                     class="material-icons text-slate-400 group-focus-within:text-primary transition-colors text-xl">alternate_email</span>
                             </div>
                             <input
-                                class="block w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-slate-900 dark:text-white placeholder-slate-400"
-                                id="username" name="username" placeholder="exampleuser1" required=""
-                                type="text" />
+                                class="block w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-slate-900 dark:text-white placeholder-slate-400 @error('email') border-red-500 @enderror"
+                                id="email" name="email" value="{{ old('email') }}"
+                                placeholder="admin@example.com" required="" type="email" />
                         </div>
+                        @error('email')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
                     <!-- Password Field -->
                     <div class="space-y-2">
@@ -91,14 +95,17 @@
                                     class="material-icons text-slate-400 group-focus-within:text-primary transition-colors text-xl">lock_outline</span>
                             </div>
                             <input
-                                class="block w-full pl-10 pr-12 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-slate-900 dark:text-white placeholder-slate-400"
+                                class="block w-full pl-10 pr-12 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-slate-900 dark:text-white placeholder-slate-400 @error('password') border-red-500 @enderror"
                                 id="password" name="password" placeholder="••••••••" required="" type="password" />
                             <button
                                 class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
-                                type="button">
-                                <span class="material-icons text-xl">visibility</span>
+                                type="button" onclick="togglePassword()">
+                                <span class="material-icons text-xl" id="toggleIcon">visibility</span>
                             </button>
                         </div>
+                        @error('password')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
                     <!-- Submit Button -->
                     <button
@@ -108,6 +115,20 @@
                         <span class="material-icons text-lg">login</span>
                     </button>
                 </form>
+
+                <script>
+                    function togglePassword() {
+                        const passwordInput = document.getElementById('password');
+                        const toggleIcon = document.getElementById('toggleIcon');
+                        if (passwordInput.type === 'password') {
+                            passwordInput.type = 'text';
+                            toggleIcon.textContent = 'visibility_off';
+                        } else {
+                            passwordInput.type = 'password';
+                            toggleIcon.textContent = 'visibility';
+                        }
+                    }
+                </script>
                 <!-- Security Indicator -->
                 <div
                     class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-center gap-2 text-slate-400">

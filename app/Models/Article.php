@@ -9,4 +9,17 @@ class Article extends Model
 {
     /** @use HasFactory<\Database\Factories\ArticleFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'category_id',
+        'content',
+        'image',
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
