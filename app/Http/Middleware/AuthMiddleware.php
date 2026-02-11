@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class GuestMiddleware
+class AuthMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,8 @@ class GuestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check()) {
-            return redirect()->route('dashboard');
+        if (!auth()->check()) {
+            return redirect()->route('login');
         }
         return $next($request);
     }
