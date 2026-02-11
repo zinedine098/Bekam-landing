@@ -54,10 +54,6 @@
                     <h3 class="text-xl font-bold mb-4">Hijama Sunnah</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Terapi bekam klasik
                         mengikuti titik-titik sunnah untuk detoksifikasi tubuh dan meningkatkan imun.</p>
-                    <a class="text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
-                        href="#">
-                        Selengkapnya <span class="material-icons text-sm">arrow_forward</span>
-                    </a>
                 </div>
                 <!-- Card 2: Bekam Kering -->
                 <div
@@ -69,10 +65,6 @@
                     <h3 class="text-xl font-bold mb-4">Bekam Kering</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Fokus pada relaksasi otot
                         dan melancarkan aliran darah tanpa pengeluaran darah, cocok untuk pegal-pegal.</p>
-                    <a class="text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
-                        href="#">
-                        Selengkapnya <span class="material-icons text-sm">arrow_forward</span>
-                    </a>
                 </div>
                 <!-- Card 3: Bekam Basah -->
                 <div
@@ -84,10 +76,6 @@
                     <h3 class="text-xl font-bold mb-4">Bekam Basah</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Proses pengeluaran darah
                         kotor (oksidan) dengan teknik steril untuk penyembuhan berbagai penyakit kronis.</p>
-                    <a class="text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
-                        href="#">
-                        Selengkapnya <span class="material-icons text-sm">arrow_forward</span>
-                    </a>
                 </div>
                 <!-- Card 4: Bekam Listrik -->
                 <div
@@ -99,10 +87,6 @@
                     <h3 class="text-xl font-bold mb-4">Bekam Listrik</h3>
                     <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">Inovasi modern yang
                         menggabungkan terapi bekam dengan stimulasi saraf elektrik untuk rehabilitasi saraf.</p>
-                    <a class="text-primary font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all"
-                        href="#">
-                        Selengkapnya <span class="material-icons text-sm">arrow_forward</span>
-                    </a>
                 </div>
             </div>
         </div>

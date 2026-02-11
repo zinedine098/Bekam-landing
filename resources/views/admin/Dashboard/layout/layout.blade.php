@@ -42,20 +42,31 @@
 
 <body
     class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 transition-colors duration-200">
-    <div class="flex h-screen overflow-hidden">
+    <div class="flex h-screen overflow-hidden bg-background-light dark:bg-background-dark">
+        <!-- Backdrop -->
+        <div id="sidebar-backdrop" onclick="toggleSidebar()"
+            class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden transition-opacity opacity-0"></div>
+
         <!-- Sidebar -->
-        <aside class="w-72 bg-white dark:bg-slate-900 border-r border-primary/10 flex flex-col hidden lg:flex">
-            <div class="p-6 flex items-center gap-3">
-                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
-                    <span class="material-icons-round">health_and_safety</span>
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 z-50 w-72 bg-white dark:bg-slate-900 border-r border-primary/10 flex flex-col transform -translate-x-full lg:translate-x-0 lg:static lg:flex transition-all duration-300 ease-in-out shadow-2xl lg:shadow-none">
+            <div class="p-6 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+                        <span class="material-icons-round">health_and_safety</span>
+                    </div>
+                    <div>
+                        <h1 class="font-bold text-xl tracking-tight">Bekam <span class="text-primary">Admin</span></h1>
+                        <p class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-bold">
+                            Health Center</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="font-bold text-xl tracking-tight">Bekam <span class="text-primary">Admin</span></h1>
-                    <p class="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-widest font-bold">Health
-                        Center</p>
-                </div>
+                <!-- Close Button (Mobile) -->
+                <button onclick="toggleSidebar()" class="lg:hidden text-slate-400 hover:text-primary transition-colors">
+                    <span class="material-icons-round">close</span>
+                </button>
             </div>
-            <nav class="flex-1 px-4 mt-4 space-y-1">
+            <nav class="flex-1 px-4 mt-4 space-y-1 overflow-y-auto">
                 <a class="flex items-center gap-3 px-4 py-3 {{ request()->is('admin/dashboard') ? 'text-primary bg-primary/10' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50' }} rounded-xl font-semibold transition-all group"
                     href="/admin/dashboard">
                     <span class="material-icons-round text-primary">dashboard</span>
@@ -102,8 +113,21 @@
                 </div>
             </div>
         </aside>
+
         <!-- Main Content Area -->
-        <main class="flex-1 flex flex-col overflow-y-auto">
+        <main class="flex-1 flex flex-col overflow-y-auto relative w-full transition-all duration-300">
+            <!-- Header (Mobile & Desktop) -->
+            <header
+                class="bg-white dark:bg-slate-900 border-b border-primary/10 p-4 sticky top-0 z-30 flex items-center gap-4">
+                <button onclick="toggleSidebar()"
+                    class="p-2 -ml-2 text-slate-500 hover:text-primary hover:bg-primary/5 rounded-xl transition-all">
+                    <span class="material-icons-round">menu</span>
+                </button>
+                <div class="flex-1">
+                    <span class="font-bold text-lg text-slate-800 dark:text-slate-100">Menu Admin</span>
+                </div>
+            </header>
+
             <div class="p-8 space-y-8">
                 @yield('content')
             </div>
@@ -113,6 +137,31 @@
             </footer>
         </main>
     </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('sidebar-backdrop');
+
+            if (window.innerWidth >= 1024) {
+                sidebar.classList.toggle('lg:-ml-72');
+            } else {
+                sidebar.classList.toggle('-translate-x-full');
+
+                if (backdrop.classList.contains('hidden')) {
+                    backdrop.classList.remove('hidden');
+                    setTimeout(() => {
+                        backdrop.classList.remove('opacity-0');
+                    }, 10);
+                } else {
+                    backdrop.classList.add('opacity-0');
+                    setTimeout(() => {
+                        backdrop.classList.add('hidden');
+                    }, 300);
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

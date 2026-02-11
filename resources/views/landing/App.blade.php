@@ -104,10 +104,6 @@
                         href="{{ route('landing.videos.index') }}">Video</a>
                     <a class="text-sm font-semibold hover:text-primary transition-colors"
                         href="{{ route('home') }}#kontak">Kontak</a>
-                    <a class="bg-primary hover:bg-primary/90 text-background-dark px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg shadow-primary/20"
-                        href="#">
-                        Hubungi Sekarang
-                    </a>
                 </nav>
 
                 <!-- Mobile Menu Button -->
