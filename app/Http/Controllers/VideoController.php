@@ -97,26 +97,15 @@ class VideoController extends Controller
      */
     private function convertYoutubeUrl($url)
     {
-        // Simple conversion for youtube.com/watch?v=ID and youtu.be/ID
-        $pattern = '%^# Match any youtube URL
-        (?:https?://)?  # Optional scheme. Either http or https
-        (?:www\.)?      # Optional www subdomain
-        (?:             # Group host alternatives
-          youtu\.be/    # Either youtu.be,
-        | youtube\.com  # or youtube.com
-          (?:           # Group path alternatives
-            /embed/     # Either /embed/
-          | /v/         # or /v/
-          | /watch\?v=  # or /watch\?v=
-          )             # End path alternatives.
-        )               # End host alternatives.
-        ([\w-]{10,12})  # Allow 10-12 for 11 char youtube id.
-        $%x';
+        // Pattern to match YouTube video ID from various URL formats
+        // Supports: youtube.com/watch?v=ID, youtu.be/ID, youtube.com/embed/ID, etc.
+        // Also handles additional query parameters (e.g. &t=1s) by not anchoring to end of string
+        $pattern = '/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i';
         
-        $result = preg_match($pattern, $url, $matches);
-        if ($result) {
+        if (preg_match($pattern, $url, $matches)) {
             return 'https://www.youtube.com/embed/' . $matches[1];
         }
+
         return $url;
     }
 }
