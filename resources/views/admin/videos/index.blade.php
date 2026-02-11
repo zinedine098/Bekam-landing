@@ -15,8 +15,8 @@
                 <span>Tambah Video</span>
             </a>
         </div>
-        
-        @if(session('success'))
+
+        @if (session('success'))
             <div class="p-4 mx-6 mt-4 bg-green-50 dark:bg-green-500/10 text-green-500 rounded-xl text-sm font-bold">
                 {{ session('success') }}
             </div>
@@ -25,7 +25,8 @@
         <div class="overflow-x-auto">
             <table class="w-full text-left">
                 <thead>
-                    <tr class="bg-slate-50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-500 text-[10px] uppercase tracking-widest font-bold">
+                    <tr
+                        class="bg-slate-50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-500 text-[10px] uppercase tracking-widest font-bold">
                         <th class="px-6 py-4">Video</th>
                         <th class="px-6 py-4">Judul & Deskripsi</th>
                         <th class="px-6 py-4 text-right">Aksi</th>
@@ -36,7 +37,8 @@
                         <tr class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
                             <td class="px-6 py-4 w-48">
                                 <div class="rounded-xl overflow-hidden aspect-video bg-black/5 dark:bg-white/5">
-                                    <iframe src="{{ $video->video_url }}" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+                                    <iframe src="{{ $video->video_url }}" class="w-full h-full" frameborder="0"
+                                        allowfullscreen></iframe>
                                 </div>
                             </td>
                             <td class="px-6 py-4">
@@ -45,13 +47,16 @@
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex justify-end gap-2">
-                                    <a href="{{ route('videos.edit', $video) }}" class="p-2 text-slate-400 hover:text-primary transition-colors">
+                                    <a href="{{ route('videos.edit', $video) }}"
+                                        class="p-2 text-slate-400 hover:text-primary transition-colors">
                                         <span class="material-icons-round text-lg">edit</span>
                                     </a>
-                                    <form action="{{ route('videos.destroy', $video) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus video ini?')">
+                                    <form action="{{ route('videos.destroy', $video) }}" method="POST"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus video ini?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="p-2 text-slate-400 hover:text-red-500 transition-colors">
+                                        <button type="submit"
+                                            class="p-2 text-slate-400 hover:text-red-500 transition-colors">
                                             <span class="material-icons-round text-lg">delete</span>
                                         </button>
                                     </form>

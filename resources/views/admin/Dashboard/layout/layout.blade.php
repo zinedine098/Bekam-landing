@@ -76,6 +76,18 @@
                     <span class="material-icons-round group-hover:text-primary">video_library</span>
                     <span>Manajemen Video</span>
                 </a>
+                <div class="pt-4 pb-2 px-4 text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Landing
+                    Page</div>
+                <a class="flex items-center gap-3 px-4 py-3 {{ request()->is('admin/hero*') ? 'text-primary bg-primary/10' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50' }} rounded-xl transition-all group"
+                    href="{{ route('hero.index') }}">
+                    <span class="material-icons-round group-hover:text-primary">web</span>
+                    <span>Hero Section</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 {{ request()->is('admin/footer*') ? 'text-primary bg-primary/10' : 'text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50' }} rounded-xl transition-all group"
+                    href="{{ route('footer.index') }}">
+                    <span class="material-icons-round group-hover:text-primary">view_quilt</span>
+                    <span>Footer Settings</span>
+                </a>
             </nav>
             <div class="p-4 mt-auto">
                 <div class="p-4 bg-primary/5 rounded-xl border border-primary/10">

@@ -6,7 +6,7 @@
         <div class="absolute inset-0 z-0">
             <img class="w-full h-full object-cover opacity-20 dark:opacity-10"
                 data-alt="Clean and professional modern therapy clinic room"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhs7MiVM7vQ4HZl4HIaqm0KWpuO2Fqgk44Cvwmn79uXkpvA6Ltp1KEZzF6J7Tm7A6aXaBId4CCxBX3Z97Ea6VvRsWJkYIe9UK5F46k5WQMp7MWzlVs1LzhuVrq0VFsMJiHiNT-rlkud_Mp2AS9OeogbtdnpUfEaHhuQY9lhgWnrLvUF3oXXfYawh3MYHzjzUnpmJuQEQMiVkxx58C6Q9vv7KUkdQpPjB__9CUWxtDJjFCawTowTHS2ZefLUFHQqTTIKMPv3KVaJRHa" />
+                src="{{ $hero && $hero->image ? Storage::url($hero->image) : 'https://lh3.googleusercontent.com/aida-public/AB6AXuAhs7MiVM7vQ4HZl4HIaqm0KWpuO2Fqgk44Cvwmn79uXkpvA6Ltp1KEZzF6J7Tm7A6aXaBId4CCxBX3Z97Ea6VvRsWJkYIe9UK5F46k5WQMp7MWzlVs1LzhuVrq0VFsMJiHiNT-rlkud_Mp2AS9OeogbtdnpUfEaHhuQY9lhgWnrLvUF3oXXfYawh3MYHzjzUnpmJuQEQMiVkxx58C6Q9vv7KUkdQpPjB__9CUWxtDJjFCawTowTHS2ZefLUFHQqTTIKMPv3KVaJRHa' }}" />
             <div
                 class="absolute inset-0 bg-gradient-to-b from-background-light/0 via-background-light to-background-light dark:from-background-dark/0 dark:to-background-dark">
             </div>
@@ -16,22 +16,21 @@
                 <div
                     class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-6">
                     <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                    <span class="text-xs font-bold uppercase tracking-wider text-brand-teal dark:text-primary">Terapi
-                        Bersertifikat</span>
+                    <span
+                        class="text-xs font-bold uppercase tracking-wider text-brand-teal dark:text-primary">{{ $hero->badge_text ?? 'Terapi Bersertifikat' }}</span>
                 </div>
                 <h1 class="text-5xl lg:text-7xl font-extrabold text-brand-teal dark:text-white mb-6 leading-tight">
-                    Kesehatan Alami dengan <span class="text-primary">Bekam Profesional</span>
+                    {!! $hero->title ?? 'Kesehatan Alami dengan <span class="text-primary">Bekam Profesional</span>' !!}
                 </h1>
                 <p class="text-lg lg:text-xl text-slate-600 dark:text-slate-400 mb-10 leading-relaxed">
-                    Kami menghadirkan terapi sunnah dengan standar klinis modern. Mengutamakan sterilitas, kenyamanan,
-                    dan hasil maksimal untuk pemulihan kesehatan Anda secara holistik.
+                    {{ $hero->description ?? 'Kami menghadirkan terapi sunnah dengan standar klinis modern. Mengutamakan sterilitas, kenyamanan, dan hasil maksimal untuk pemulihan kesehatan Anda secara holistik.' }}
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <button
+                    <a href="{{ $hero->button_link ?? '#' }}"
                         class="bg-primary hover:bg-primary/90 text-background-dark px-10 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2">
                         <span class="material-icons">calendar_today</span>
-                        Booking Sekarang
-                    </button>
+                        {{ $hero->button_text ?? 'Hubungi Sekarang' }}
+                    </a>
                 </div>
             </div>
         </div>
@@ -173,10 +172,17 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 @forelse($videos as $video)
-                    <div class="relative group aspect-video rounded-2xl overflow-hidden shadow-lg bg-black">
+                    <div onclick="openVideoModal('{{ $video->video_url }}', '{{ $video->title }}')"
+                        class="relative group aspect-video rounded-2xl overflow-hidden shadow-lg bg-black cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
                         <iframe src="{{ $video->video_url }}" class="w-full h-full pointer-events-none"
                             frameborder="0"></iframe>
-                        <div class="absolute inset-0 bg-transparent group-hover:bg-black/20 transition-all z-10"></div>
+                        <div
+                            class="absolute inset-0 bg-transparent group-hover:bg-black/40 transition-all z-10 flex items-center justify-center">
+                            <div
+                                class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform opacity-0 group-hover:opacity-100 delay-100">
+                                <span class="material-icons text-4xl ml-1">play_arrow</span>
+                            </div>
+                        </div>
                         <div
                             class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent z-20">
                             <h4 class="text-white font-bold line-clamp-1">{{ $video->title }}</h4>

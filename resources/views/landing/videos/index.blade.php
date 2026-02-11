@@ -12,7 +12,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @forelse($videos as $video)
-                    <div
+                    <div onclick="openVideoModal('{{ $video->video_url }}', '{{ $video->title }}')"
                         class="group relative rounded-2xl overflow-hidden shadow-lg bg-black cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
                         <div class="relative aspect-video">
                             <iframe src="{{ $video->video_url }}" class="w-full h-full pointer-events-none"
@@ -20,7 +20,7 @@
                             <div
                                 class="absolute inset-0 bg-transparent group-hover:bg-black/20 transition-all z-10 flex items-center justify-center">
                                 <div
-                                    class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform opacity-0 group-hover:opacity-100 delay-100 animate-bounce">
+                                    class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white scale-0 group-hover:scale-100 transition-transform opacity-0 group-hover:opacity-100 delay-100">
                                     <span class="material-icons text-4xl ml-1">play_arrow</span>
                                 </div>
                             </div>

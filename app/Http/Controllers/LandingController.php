@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Video;
+use App\Models\HeroSection;
+use App\Models\Footer;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -19,7 +21,9 @@ class LandingController extends Controller
             ->take(3)
             ->get();
 
-        return view('landing.index', compact('articles', 'videos'));
+        $hero = HeroSection::first();
+
+        return view('landing.index', compact('articles', 'videos', 'hero'));
     }
 
     public function articles()

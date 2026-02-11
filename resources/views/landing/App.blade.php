@@ -19,6 +19,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -39,6 +42,21 @@
                         "lg": "0.5rem",
                         "xl": "0.75rem",
                         "full": "9999px"
+                    },
+                    keyframes: {
+                        "fade-in-up": {
+                            "0%": {
+                                opacity: "0",
+                                transform: "translateY(20px)"
+                            },
+                            "100%": {
+                                opacity: "1",
+                                transform: "translateY(0)"
+                            },
+                        }
+                    },
+                    animation: {
+                        "fade-in-up": "fade-in-up 0.5s ease-out forwards",
                     },
                 },
             },
@@ -88,7 +106,7 @@
                         href="{{ route('home') }}#kontak">Kontak</a>
                     <a class="bg-primary hover:bg-primary/90 text-background-dark px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg shadow-primary/20"
                         href="#">
-                        Booking Sekarang
+                        Hubungi Sekarang
                     </a>
                 </nav>
 
@@ -134,15 +152,15 @@
                         <div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
                             <span class="material-icons text-white text-lg">medical_services</span>
                         </div>
-                        <span class="text-xl font-bold tracking-tight text-white">Praktik Bekam</span>
+                        <span
+                            class="text-xl font-bold tracking-tight text-white">{{ $footer->clinic_name ?? 'Praktik Bekam' }}</span>
                     </div>
                     <p class="text-sm leading-relaxed mb-6">
-                        Pelopor terapi bekam modern yang memadukan keahlian medis dan nilai sunnah untuk kesehatan
-                        optimal keluarga Indonesia.
+                        {{ $footer->about_description ?? 'Pelopor terapi bekam modern yang memadukan keahlian medis dan nilai sunnah untuk kesehatan optimal keluarga Indonesia.' }}
                     </p>
                     <div class="flex gap-4">
                         <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
-                            href="#">
+                            href="{{ $footer->instagram_link ?? '#' }}">
                             <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
                                 <path
                                     d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.073 4.948.073s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.69-.072-4.949-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
@@ -150,7 +168,7 @@
                             </svg>
                         </a>
                         <a class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
-                            href="#">
+                            href="{{ $footer->facebook_link ?? '#' }}">
                             <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24">
                                 <path
                                     d="M19.057 3.5a6.746 6.746 0 0 0-4.741 1.955c-5.071 5.07-5.147 5.17-5.238 5.448h-2.078v4.28h2.078v8.817h4.348v-8.817h3.134l.473-4.28h-3.607v-.509c0-1.145.253-1.924 1.837-1.924h1.934V3.5h-3.138z">
@@ -164,10 +182,9 @@
                     <h4 class="text-white font-bold mb-6">Menu Utama</h4>
                     <ul class="space-y-4 text-sm">
                         <li><a class="hover:text-primary transition-colors" href="#">Beranda</a></li>
-                        <li><a class="hover:text-primary transition-colors" href="#">Daftar Layanan</a></li>
-                        <li><a class="hover:text-primary transition-colors" href="#">Artikel Kesehatan</a></li>
-                        <li><a class="hover:text-primary transition-colors" href="#">Galeri Video</a></li>
-                        <li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#layanan">Daftar Layanan</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#berita">Artikel Kesehatan</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="#video">Galeri Video</a></li>
                     </ul>
                 </div>
                 <!-- Contact Info -->
@@ -177,8 +194,9 @@
                         <div class="flex gap-4">
                             <span class="material-icons text-primary">location_on</span>
                             <div class="text-sm">
-                                <p class="font-bold text-white mb-1">Klinik Utama Jakarta</p>
-                                <p>Jl. Kesehatan No. 123, Jakarta Selatan, 12345</p>
+                                <p class="font-bold text-white mb-1">
+                                    {{ $footer->clinic_name ?? 'Klinik Utama Jakarta' }}</p>
+                                <p>{{ $footer->address ?? 'Jl. Kesehatan No. 123, Jakarta Selatan, 12345' }}</p>
                                 <a class="text-primary hover:underline mt-2 inline-block" href="#">Buka di
                                     Google Maps</a>
                             </div>
@@ -187,8 +205,8 @@
                             <span class="material-icons text-primary">call</span>
                             <div class="text-sm">
                                 <p class="font-bold text-white mb-1">Hubungi Kami</p>
-                                <p>WhatsApp: +62 812 3456 7890</p>
-                                <p>Email: info@praktikbekam.com</p>
+                                <p>WhatsApp: {{ $footer->whatsapp ?? '+62 812 3456 7890' }}</p>
+                                <p>Email: {{ $footer->email ?? 'info@praktikbekam.com' }}</p>
                             </div>
                         </div>
                     </div>
@@ -201,7 +219,8 @@
                 </div>
             </div>
             <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
-                <p>© 2024 Praktik Bekam Profesional. Seluruh Hak Cipta Dilindungi.</p>
+                <p>{{ $footer->copyright_text ?? '© 2024 Praktik Bekam Profesional. Seluruh Hak Cipta Dilindungi.' }}
+                </p>
                 <div class="flex gap-6 mt-4 md:mt-0">
                     <a class="hover:text-white" href="#">Kebijakan Privasi</a>
                     <a class="hover:text-white" href="#">Syarat &amp; Ketentuan</a>
@@ -243,7 +262,89 @@
                 }
             });
         });
+
+        // Video Modal Logic
+        function openVideoModal(url, title) {
+            const modal = document.getElementById('videoModal');
+            const content = document.getElementById('modalContent');
+            const iframe = document.getElementById('modalIframe');
+
+            if (!modal || !iframe) return;
+
+            // Sanitize URL for autoplay if it's YouTube
+            let autoplayUrl = url;
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                const separator = url.includes('?') ? '&' : '?';
+                autoplayUrl = url + separator + 'autoplay=1';
+            }
+
+            iframe.src = autoplayUrl;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            // Animation delay
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                if (content) {
+                    content.classList.remove('scale-95');
+                    content.classList.add('scale-100');
+                }
+            }, 10);
+
+            // Prevent scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const content = document.getElementById('modalContent');
+            const iframe = document.getElementById('modalIframe');
+
+            if (!modal || !iframe) return;
+
+            modal.classList.remove('opacity-100');
+            if (content) {
+                content.classList.add('scale-95');
+                content.classList.remove('scale-100');
+            }
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                iframe.src = '';
+                // Restore scroll
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeVideoModal();
+        });
+
+        // Close on backdrop click
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('videoModal');
+            if (modal && e.target === modal) {
+                closeVideoModal();
+            }
+        });
     </script>
+
+    <!-- Video Modal -->
+    <div id="videoModal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-sm p-4 transition-all duration-300 opacity-0">
+        <div class="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl scale-95 transition-transform duration-300"
+            id="modalContent">
+            <button onclick="closeVideoModal()"
+                class="absolute top-4 right-4 z-50 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-md">
+                <span class="material-icons">close</span>
+            </button>
+            <iframe id="modalIframe" src="" class="w-full h-full" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
 </body>
 
 </html><!-- End of File -->

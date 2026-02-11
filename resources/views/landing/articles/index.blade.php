@@ -1,7 +1,7 @@
 @extends('landing.App')
 
 @section('content')
-    <div class="py-24 bg-brand-teal/5 dark:bg-slate-800/20">
+    <div class="py-24 bg-brand-teal/5 dark:bg-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h1 class="text-4xl lg:text-5xl font-bold text-brand-teal dark:text-white mb-6">Berita & Artikel</h1>
