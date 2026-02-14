@@ -4,11 +4,11 @@
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-40 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img class="w-full h-full object-cover opacity-20 dark:opacity-10"
+            <img class="w-full h-full object-cover opacity-90 dark:opacity-70"
                 data-alt="Clean and professional modern therapy clinic room"
                 src="{{ $hero && $hero->image ? Storage::url($hero->image) : 'https://lh3.googleusercontent.com/aida-public/AB6AXuAhs7MiVM7vQ4HZl4HIaqm0KWpuO2Fqgk44Cvwmn79uXkpvA6Ltp1KEZzF6J7Tm7A6aXaBId4CCxBX3Z97Ea6VvRsWJkYIe9UK5F46k5WQMp7MWzlVs1LzhuVrq0VFsMJiHiNT-rlkud_Mp2AS9OeogbtdnpUfEaHhuQY9lhgWnrLvUF3oXXfYawh3MYHzjzUnpmJuQEQMiVkxx58C6Q9vv7KUkdQpPjB__9CUWxtDJjFCawTowTHS2ZefLUFHQqTTIKMPv3KVaJRHa' }}" />
             <div
-                class="absolute inset-0 bg-gradient-to-b from-background-light/0 via-background-light to-background-light dark:from-background-dark/0 dark:to-background-dark">
+                class="absolute inset-0 bg-gradient-to-b from-background-light/10 via-background-light/50 to-background-light dark:from-background-dark/20 dark:via-background-dark/60 dark:to-background-dark">
             </div>
         </div>
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -85,6 +85,14 @@
                     placeholder="e.g. © 2024 Praktik Bekam Profesional. All Rights Reserved.">
             </div>
 
+            <div class="space-y-2">
+                <label class="text-sm font-bold text-slate-600 dark:text-slate-400">Google Maps Iframe</label>
+                <textarea name="google_maps_iframe" rows="4"
+                    class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-transparent focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                    placeholder="Paste the Google Maps iframe code here...">{{ old('google_maps_iframe', $footer->google_maps_iframe ?? '') }}</textarea>
+                <p class="text-xs text-slate-500">Go to Google Maps -> Share -> Embed a map -> Copy HTML</p>
+            </div>
+
             <div class="pt-4">
                 <button type="submit"
                     class="px-8 py-4 bg-primary text-slate-900 font-bold rounded-2xl hover:brightness-95 transition-all shadow-lg shadow-primary/20">

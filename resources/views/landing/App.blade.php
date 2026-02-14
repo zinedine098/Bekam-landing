@@ -7,7 +7,7 @@
         rel="stylesheet" />
 </head>
 
-<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display">```html
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display">
 
 
 
@@ -78,6 +78,12 @@
         .glass-nav {
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
+        }
+
+        .map-container iframe {
+            width: 100% !important;
+            height: 100% !important;
+            border: 0;
         }
     </style>
     <!-- Header / Navigation -->
@@ -207,10 +213,14 @@
                         </div>
                     </div>
                     <div
-                        class="mt-8 rounded-xl overflow-hidden border border-slate-700 h-32 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
-                        <img class="w-full h-full object-cover" data-alt="Map location in Jakarta"
-                            data-location="Jakarta"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiisqR1XSuF9shSoAKurbEcIeWCiWafDUSBENH9gFsu-pO5_5wbN0LmXsFmziR2Rav037e_h0AAACPdE_4HkZ7D_z9rZD-v_mMdoosw7GUQkpt_JFJsqxhrOwlCY9BCCrYK-uJ2auaPmB92tDmZkE-wibT5FnLR35OXefi69BFNIEgeKzzKIITpZ0rUaa2vFBbbbQF3Dy26C3s8gXKcYjAfRl5URTqlDXnrYTYoadQu_4V8DbRowzpB962d0kaH3ruEpYTsuwbdsxs" />
+                        class="map-container mt-8 rounded-xl overflow-hidden border border-slate-700 h-32 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+                        @if ($footer && $footer->google_maps_iframe)
+                            {!! $footer->google_maps_iframe !!}
+                        @else
+                            <img class="w-full h-full object-cover" data-alt="Map location in Jakarta"
+                                data-location="Jakarta"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiisqR1XSuF9shSoAKurbEcIeWCiWafDUSBENH9gFsu-pO5_5wbN0LmXsFmziR2Rav037e_h0AAACPdE_4HkZ7D_z9rZD-v_mMdoosw7GUQkpt_JFJsqxhrOwlCY9BCCrYK-uJ2auaPmB92tDmZkE-wibT5FnLR35OXefi69BFNIEgeKzzKIITpZ0rUaa2vFBbbbQF3Dy26C3s8gXKcYjAfRl5URTqlDXnrYTYoadQu_4V8DbRowzpB962d0kaH3ruEpYTsuwbdsxs" />
+                        @endif
                     </div>
                 </div>
             </div>

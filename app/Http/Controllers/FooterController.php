@@ -26,6 +26,7 @@ class FooterController extends Controller
             'instagram_link' => 'nullable|string|max:255',
             'facebook_link' => 'nullable|string|max:255',
             'copyright_text' => 'nullable|string|max:255',
+            'google_maps_iframe' => 'nullable|string',
         ]);
 
         $footer->fill($request->all());

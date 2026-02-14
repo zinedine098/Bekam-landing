@@ -18,5 +18,6 @@ class Footer extends Model
         'instagram_link',
         'facebook_link',
         'copyright_text',
+        'google_maps_iframe',
     ];
 }

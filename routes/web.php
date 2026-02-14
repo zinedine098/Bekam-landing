@@ -18,7 +18,7 @@ Route::get('/berita/{article:slug}', [LandingController::class, 'showArticle'])-
 Route::get('/video', [LandingController::class, 'videos'])->name('landing.videos.index');
 
 Route::middleware(['guest'])->group(function () {    
-    Route::get('/admin', [AuthController::class, 'showLogin'])->name('login');
+    Route::get('/admin-dashboard', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/admin', [AuthController::class, 'login']);
 });
 
